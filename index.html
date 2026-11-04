@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Official Download</title>
+<style>
+:root {
+  --bg: #F3F4F6;
+  --surface: #FFFFFF;
+  --surface-muted: #F7F8FA;
+  --text: #15171A;
+  --muted: #667085;
+  --border: #E4E7EC;
+  --brand: #0FBF6B;
+  --brand-soft: #E8FBF1;
+  --brand-text: #065F3A;
+  --radius: 8px;
+  --radius-card: 16px;
+  --font-sans: "SF Pro Text", "PingFang TC", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 400 15px/1.6 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 56px 32px 72px; }
+
+/* ---------- header ---------- */
+.masthead { margin-bottom: 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.masthead-main { max-width: 660px; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--brand-text); background: var(--brand-soft);
+  border: 1px solid #C6F2DC; border-radius: 999px; padding: 5px 12px;
+}
+.eyebrow .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--brand); }
+h1 { font-size: 34px; line-height: 1.25; font-weight: 650; letter-spacing: -.02em; margin: 18px 0 10px; }
+.masthead p { color: var(--muted); font-size: 15px; }
+.lang-switch {
+  display: flex; flex: 0 0 auto; gap: 2px; padding: 3px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+}
+.lang-switch button {
+  border: none; background: transparent; cursor: pointer;
+  font: 600 12px/1 var(--font-sans); color: var(--muted);
+  padding: 6px 12px; border-radius: 999px;
+}
+.lang-switch button.active { background: var(--brand-soft); color: var(--brand-text); }
+.lang-switch button:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+/* ---------- platform cards ---------- */
+.platforms { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card);
+  padding: 24px; display: flex; flex-direction: column;
+}
+.platform-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.platform-title { font-size: 17px; font-weight: 600; }
+.platform-sub { font-size: 12px; color: var(--muted); }
+.chip {
+  flex: 0 0 auto;
+  font-size: 12px; font-weight: 700; letter-spacing: .02em;
+  padding: 4px 12px; border-radius: 999px;
+  background: var(--brand); color: #04351F; border: 1px solid var(--brand);
+}
+
+/* ---------- device illustrations ---------- */
+.stage {
+  display: flex; align-items: flex-start; justify-content: center; gap: 20px; flex-wrap: wrap;
+  margin: 24px 0 8px; padding: 24px 8px 32px;
+  background: var(--surface-muted); border-radius: 12px; border: 1px solid var(--border);
+}
+.phone-wrap { position: relative; flex: 0 0 auto; }
+.phone {
+  width: 196px; height: 380px; border-radius: 30px; background: #1B1D22;
+  padding: 8px; box-shadow: 0 8px 24px rgba(16, 24, 40, .12);
+}
+.screen {
+  position: relative; width: 100%; height: 100%; border-radius: 23px;
+  background: #FFFFFF; overflow: hidden; display: flex; flex-direction: column;
+}
+.notch {
+  position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+  width: 62px; height: 15px; background: #1B1D22; border-radius: 999px; z-index: 3;
+}
+.statusbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px 4px; font-size: 10px; font-weight: 600; color: #1B1D22;
+}
+.statusbar .right { display: flex; gap: 4px; align-items: center; opacity: .75; }
+.bars { display: flex; align-items: flex-end; gap: 2px; }
+.bars i { display: block; width: 2px; background: #1B1D22; border-radius: 1px; }
+.bars i:nth-child(1) { height: 4px; }
+.bars i:nth-child(2) { height: 6px; }
+.bars i:nth-child(3) { height: 8px; }
+.battery { width: 16px; height: 8px; border: 1px solid #1B1D22; border-radius: 2px; position: relative; }
+.battery::after { content: ""; position: absolute; inset: 1px; right: 4px; background: #1B1D22; border-radius: 1px; }
+
+.urlbar {
+  margin: 2px 10px 10px; padding: 6px 10px; border-radius: 8px;
+  background: #F0F1F4; font-size: 10px; color: #4B5563;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.skeleton { flex: 1; padding: 4px 12px; display: flex; flex-direction: column; gap: 8px; }
+.sk-title { height: 12px; width: 62%; border-radius: 4px; background: #E6E8EC; }
+.sk-row { height: 8px; border-radius: 4px; background: #EDEFF2; }
+.sk-row.short { width: 78%; }
+.sk-card { height: 64px; border-radius: 10px; background: #F2F4F7; border: 1px solid #E8EBEF; }
+.sk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+.sk-tile { height: 44px; border-radius: 8px; background: #F2F4F7; border: 1px solid #E8EBEF; }
+
+/* iOS toolbar */
+.toolbar {
+  display: flex; align-items: center; justify-content: space-around;
+  height: 46px; border-top: 1px solid var(--border); background: #FAFAFB;
+  color: #7A8190; position: relative;
+}
+.toolbar svg { width: 17px; height: 17px; display: block; }
+.tool-item { position: relative; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; }
+.focus .tool-item::after {
+  content: ""; position: absolute; inset: -6px; border: 2px solid var(--brand);
+  border-radius: 999px; background: rgba(15, 191, 107, .06);
+}
+.focus .tool-item svg { color: var(--brand-text); }
+
+/* Android top bar */
+.topbar { display: flex; align-items: center; gap: 8px; padding: 2px 10px 10px; }
+.topbar .urlbar { flex: 1; margin: 0; justify-content: flex-start; }
+.topbar .menu {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; color: #4B5563;
+}
+.focus .topbar .menu::after {
+  content: ""; position: absolute; inset: -5px; border: 2px solid var(--brand);
+  border-radius: 999px; background: rgba(15, 191, 107, .06);
+}
+.focus .topbar .menu { color: var(--brand-text); }
+.dots { display: flex; flex-direction: column; gap: 3px; }
+.dots i { width: 3px; height: 3px; border-radius: 999px; background: currentColor; }
+
+/* ---------- sheet ---------- */
+.sheet {
+  width: 214px; background: #FFFFFF; border: 1px solid var(--border); border-radius: 14px;
+  padding: 10px; box-shadow: 0 8px 20px rgba(16, 24, 40, .08); position: relative;
+}
+.sheet-handle { width: 34px; height: 4px; border-radius: 999px; background: #D3D8E0; margin: 0 auto 8px; }
+.sheet-title { font-size: 11px; font-weight: 600; color: var(--muted); padding: 2px 8px 8px; }
+.sheet-row {
+  display: flex; align-items: center; gap: 8px; padding: 9px 8px; border-radius: 8px;
+  font-size: 11px; color: #344054; border-top: 1px solid #F2F4F7;
+}
+.sheet-row:first-of-type { border-top: none; }
+.sheet-row .ico { width: 14px; height: 14px; color: #98A2B3; flex: 0 0 auto; }
+.sheet-row.on { background: var(--brand-soft); color: var(--brand-text); font-weight: 600; }
+.sheet-row.on .ico { color: var(--brand-text); }
+.sheet-row .tag {
+  margin-left: auto; font-size: 10px; font-weight: 600; color: var(--brand-text);
+  background: #FFFFFF; border: 1px solid #C6F2DC; border-radius: 999px; padding: 1px 6px;
+}
+.step-flag {
+  position: absolute; left: 0; top: -22px; z-index: 4;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px;
+  background: var(--brand); color: #04351F; font-size: 11px; font-weight: 700;
+}
+.callout {
+  font-size: 11px; color: var(--brand-text); font-weight: 600; text-align: center;
+  margin-top: 8px; background: var(--brand-soft); border: 1px solid #C6F2DC;
+  border-radius: 999px; padding: 2px 8px; display: inline-block;
+}
+.callout-row { text-align: center; }
+.arrow { align-self: center; color: #98A2B3; font-size: 18px; }
+
+/* ---------- steps ---------- */
+.steps { margin-top: 16px; display: flex; flex-direction: column; }
+.step { display: flex; gap: 12px; padding: 12px 0; border-top: 1px solid var(--border); }
+.step:first-child { border-top: none; padding-top: 8px; }
+.num {
+  flex: 0 0 auto; width: 22px; height: 22px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; background: var(--surface-muted);
+  border: 1px solid var(--border); color: var(--muted);
+}
+.step.key .num { background: var(--brand); border-color: var(--brand); color: #04351F; }
+.step-body .t { font-size: 14px; font-weight: 600; }
+.step-body .d { font-size: 12px; color: var(--muted); }
+
+/* ---------- notes ---------- */
+.notes { margin-top: 32px; }
+.note-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-card); padding: 24px;
+}
+.note-card h2 { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-size: 12px; color: var(--muted); font-weight: 500; }
+td:first-child { color: var(--muted); width: 30%; }
+td { color: var(--text); }
+tr:last-child td { border-bottom: none; }
+
+footer { margin-top: 32px; font-size: 12px; color: #98A2B3; text-align: center; }
+
+@media (max-width: 1100px) {
+  .platforms { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .wrap { padding: 32px 20px 56px; }
+  h1 { font-size: 26px; }
+  .masthead { flex-direction: column; gap: 16px; }
+  .stage { flex-direction: column; align-items: center; }
+  .arrow { transform: rotate(90deg); margin: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead-main">
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="eyebrow">Official Download</span></span>
+      <h1 data-i18n="title">Official Download</h1>
+      <p data-i18n="sub">Install on iPhone, iPad and Android straight from the browser — no app store, no download package.</p>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">English</button>
+      <button type="button" data-lang="zh">繁中</button>
+    </div>
+  </header>
+
+  <section class="platforms">
+
+    <!-- iOS -->
+    <article class="card">
+      <div class="platform-head">
+        <div>
+          <div class="platform-title" data-i18n="ios.title">iPhone / iPad</div>
+          <div class="platform-sub" data-i18n="ios.sub">Safari browser · Add to Home Screen</div>
+        </div>
+        <span class="chip">iOS</span>
+      </div>
+
+      <div class="stage">
+        <div class="phone-wrap">
+          <span class="step-flag">①</span>
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="screen focus">
+              <div class="statusbar">
+                <span>9:41</span>
+                <span class="right"><span class="bars"><i></i><i></i><i></i></span><span class="battery"></span></span>
+              </div>
+              <div class="urlbar"><span>🔒</span><span>your-site.com</span></div>
+              <div class="skeleton">
+                <div class="sk-title"></div>
+                <div class="sk-row short"></div>
+                <div class="sk-card"></div>
+                <div class="sk-grid"><div class="sk-tile"></div><div class="sk-tile"></div></div>
+              </div>
+              <div class="toolbar">
+                <div class="tool-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15 5 L8 12 L15 19"/></svg>
+                </div>
+                <div class="tool-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".45"><path d="M9 5 L16 12 L9 19"/></svg>
+                </div>
+                <div class="tool-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3 V14"/><path d="M8 7 L12 3 L16 7"/><path d="M6 11 H4 V20 H20 V11 H18"/></svg>
+                </div>
+                <div class="tool-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".45"><path d="M7 4 H17 V20 L12 16 L7 20 Z"/></svg>
+                </div>
+                <div class="tool-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".45"><rect x="4" y="7" width="12" height="12" rx="2"/><path d="M8 7 V5 H18 V15 H16"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="callout-row"><span class="callout" data-i18n="ios.callout1">Tap “Share”</span></div>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="phone-wrap">
+          <span class="step-flag">②</span>
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title" data-i18n="sheet.ios">Share</div>
+            <div class="sheet-row">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="3"/></svg>
+              <span data-i18n="row.copy">Copy link</span>
+            </div>
+            <div class="sheet-row">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 4 H17 V20 L12 16 L7 20 Z"/></svg>
+              <span data-i18n="row.favorite">Add to Favorites</span>
+            </div>
+            <div class="sheet-row on">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 7 V15"/><path d="M8 11 L12 7 L16 11"/></svg>
+              <span data-i18n="row.addHome">Add to Home Screen</span>
+              <span class="tag" data-i18n="tag.target">Target</span>
+            </div>
+            <div class="sheet-row">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="9" rx="2"/><path d="M7 9 V6 H17 V9"/></svg>
+              <span data-i18n="row.print">Print</span>
+            </div>
+          </div>
+          <div class="callout-row"><span class="callout" data-i18n="ios.callout2">Scroll to find this option</span></div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span class="num">1</span>
+          <div class="step-body">
+            <div class="t" data-i18n="ios.s1t">Open the page in Safari</div>
+            <div class="d" data-i18n="ios.s1d">Type or paste the site link in the address bar</div>
+          </div>
+        </div>
+        <div class="step key">
+          <span class="num">2</span>
+          <div class="step-body">
+            <div class="t" data-i18n="ios.s2t">Tap “Share” at the bottom</div>
+            <div class="d" data-i18n="ios.s2d">The box-with-arrow icon in the middle of the toolbar</div>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <div class="step-body">
+            <div class="t" data-i18n="ios.s3t">Choose “Add to Home Screen”</div>
+            <div class="d" data-i18n="ios.s3d">Scroll the share sheet to find it</div>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">4</span>
+          <div class="step-body">
+            <div class="t" data-i18n="ios.s4t">Name it, then tap “Add”</div>
+            <div class="d" data-i18n="ios.s4d">The icon appears on your home screen</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Android -->
+    <article class="card">
+      <div class="platform-head">
+        <div>
+          <div class="platform-title" data-i18n="android.title">Android</div>
+          <div class="platform-sub" data-i18n="android.sub">Chrome browser · Add to Home Screen</div>
+        </div>
+        <span class="chip">Android</span>
+      </div>
+
+      <div class="stage">
+        <div class="phone-wrap">
+          <span class="step-flag">①</span>
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="screen focus">
+              <div class="statusbar">
+                <span>9:41</span>
+                <span class="right"><span class="bars"><i></i><i></i><i></i></span><span class="battery"></span></span>
+              </div>
+              <div class="topbar">
+                <div class="urlbar"><span>🔒</span><span>your-site.com</span></div>
+                <div class="menu"><span class="dots"><i></i><i></i><i></i></span></div>
+              </div>
+              <div class="skeleton">
+                <div class="sk-title"></div>
+                <div class="sk-row short"></div>
+                <div class="sk-card"></div>
+                <div class="sk-grid"><div class="sk-tile"></div><div class="sk-tile"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="callout-row"><span class="callout" data-i18n="android.callout1">Tap ⋮ at the top right</span></div>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="phone-wrap">
+          <span class="step-flag">②</span>
+          <div class="sheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title" data-i18n="sheet.android">Menu</div>
+            <div class="sheet-row">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8 8 H16"/></svg>
+              <span data-i18n="row.newtab">New tab</span>
+            </div>
+            <div class="sheet-row">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 14 V4"/><path d="M8 8 L12 4 L16 8"/><path d="M5 13 V19 H19 V13"/></svg>
+              <span data-i18n="row.share">Share…</span>
+            </div>
+            <div class="sheet-row on">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 V13"/><path d="M7 8 L12 3 L17 8"/><rect x="4" y="13" width="16" height="8" rx="2"/></svg>
+              <span data-i18n="row.install">Install app</span>
+              <span class="tag" data-i18n="tag.target">Target</span>
+            </div>
+            <div class="sheet-row">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 4 V6 M12 18 V20 M4 12 H6 M18 12 H20"/></svg>
+              <span data-i18n="row.settings">Settings</span>
+            </div>
+          </div>
+          <div class="callout-row"><span class="callout" data-i18n="android.callout2">Some versions show “Add to Home screen”</span></div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span class="num">1</span>
+          <div class="step-body">
+            <div class="t" data-i18n="android.s1t">Open the page in Chrome</div>
+            <div class="d" data-i18n="android.s1d">Type or paste the site link in the address bar</div>
+          </div>
+        </div>
+        <div class="step key">
+          <span class="num">2</span>
+          <div class="step-body">
+            <div class="t" data-i18n="android.s2t">Tap ⋮ at the top right</div>
+            <div class="d" data-i18n="android.s2d">The three-dot menu button</div>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <div class="step-body">
+            <div class="t" data-i18n="android.s3t">Choose “Install app”</div>
+            <div class="d" data-i18n="android.s3d">Shows “Add to Home screen” when the site isn't installable</div>
+          </div>
+        </div>
+        <div class="step">
+          <span class="num">4</span>
+          <div class="step-body">
+            <div class="t" data-i18n="android.s4t">Tap “Install” and confirm</div>
+            <div class="d" data-i18n="android.s4d">The icon appears and opens in its own window</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <section class="notes">
+    <div class="note-card">
+      <h2 data-i18n="table.title">Platform differences at a glance</h2>
+      <table>
+        <thead>
+          <tr><th data-i18n="table.item">Item</th><th>iOS</th><th>Android</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="table.source">Entry point</td>
+            <td data-i18n="table.source.ios">Bottom toolbar</td>
+            <td data-i18n="table.source.android">Top-right menu</td>
+          </tr>
+          <tr>
+            <td data-i18n="table.menu">Menu label</td>
+            <td data-i18n="table.menu.ios">Add to Home Screen</td>
+            <td data-i18n="table.menu.android">Install app / Add to Home screen</td>
+          </tr>
+          <tr>
+            <td data-i18n="table.browser">Browser support</td>
+            <td data-i18n="table.browser.ios">Safari only</td>
+            <td data-i18n="table.browser.android">Chrome, Edge and others</td>
+          </tr>
+          <tr>
+            <td data-i18n="table.launch">Launch mode</td>
+            <td data-i18n="table.launch.ios">Standalone window</td>
+            <td data-i18n="table.launch.android">Standalone window</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer data-i18n="footer">Screens are illustrations; actual UI may differ by OS version.</footer>
+</div>
+
+<script>
+(function () {
+  var dictionary = {
+    en: {
+      "eyebrow": "IOS Android - Official Download",
+      "title": "IOS Android - Official Download",
+      "sub": "Install on iPhone, iPad and Android straight from the browser — no app store, no download package.",
+      "ios.title": "iPhone / iPad",
+      "ios.sub": "Safari browser · Add to Home Screen",
+      "ios.callout1": "Tap “Share”",
+      "ios.callout2": "Scroll to find this option",
+      "ios.s1t": "Open the page in Safari",
+      "ios.s1d": "Type or paste the site link in the address bar",
+      "ios.s2t": "Tap “Share” at the bottom",
+      "ios.s2d": "The box-with-arrow icon in the middle of the toolbar",
+      "ios.s3t": "Choose “Add to Home Screen”",
+      "ios.s3d": "Scroll the share sheet to find it",
+      "ios.s4t": "Name it, then tap “Add”",
+      "ios.s4d": "The icon appears on your home screen",
+      "android.title": "Android",
+      "android.sub": "Chrome browser · Add to Home Screen",
+      "android.callout1": "Tap ⋮ at the top right",
+      "android.callout2": "Some versions show “Add to Home screen”",
+      "android.s1t": "Open the page in Chrome",
+      "android.s1d": "Type or paste the site link in the address bar",
+      "android.s2t": "Tap ⋮ at the top right",
+      "android.s2d": "The three-dot menu button",
+      "android.s3t": "Choose “Install app”",
+      "android.s3d": "Shows “Add to Home screen” when the site isn't installable",
+      "android.s4t": "Tap “Install” and confirm",
+      "android.s4d": "The icon appears and opens in its own window",
+      "sheet.ios": "Share",
+      "sheet.android": "Menu",
+      "row.copy": "Copy link",
+      "row.favorite": "Add to Favorites",
+      "row.addHome": "Add to Home Screen",
+      "row.print": "Print",
+      "row.newtab": "New tab",
+      "row.share": "Share…",
+      "row.install": "Install app",
+      "row.settings": "Settings",
+      "tag.target": "Target",
+      "table.title": "Platform differences at a glance",
+      "table.item": "Item",
+      "table.source": "Entry point",
+      "table.source.ios": "Bottom toolbar",
+      "table.source.android": "Top-right menu",
+      "table.menu": "Menu label",
+      "table.menu.ios": "Add to Home Screen",
+      "table.menu.android": "Install app / Add to Home screen",
+      "table.browser": "Browser support",
+      "table.browser.ios": "Safari only",
+      "table.browser.android": "Chrome, Edge and others",
+      "table.launch": "Launch mode",
+      "table.launch.ios": "Standalone window",
+      "table.launch.android": "Standalone window",
+      "footer": "Screens are illustrations; actual UI may differ by OS version."
+    },
+    zh: {
+      "eyebrow": "IOS Android - 官方下載",
+      "title": "IOS Android - 官方下載",
+      "sub": "iPhone、iPad 與 Android 免安裝檔，直接透過瀏覽器加入主畫面即可使用。",
+      "ios.title": "iPhone / iPad",
+      "ios.sub": "Safari 瀏覽器 · 加入主畫面",
+      "ios.callout1": "點一下「分享」",
+      "ios.callout2": "向下滑動找到此項目",
+      "ios.s1t": "在 Safari 開啟網頁",
+      "ios.s1d": "在網址列輸入或貼上網站連結",
+      "ios.s2t": "點一下底部「分享」",
+      "ios.s2d": "工具列中間、方框加箭頭的圖示",
+      "ios.s3t": "選擇「加入主畫面」",
+      "ios.s3d": "在分享面板中向下滑動查找",
+      "ios.s4t": "命名後點一下「加入」",
+      "ios.s4d": "完成後主畫面會出現圖示",
+      "android.title": "Android",
+      "android.sub": "Chrome 瀏覽器 · 加入主畫面",
+      "android.callout1": "點一下右上角 ⋮",
+      "android.callout2": "部分版本顯示「加入主畫面」",
+      "android.s1t": "在 Chrome 開啟網頁",
+      "android.s1d": "在網址列輸入或貼上網站連結",
+      "android.s2t": "點一下右上角 ⋮",
+      "android.s2d": "三個直點的更多選單按鈕",
+      "android.s3t": "選擇「安裝應用程式」",
+      "android.s3d": "未符合安裝條件時顯示「加入主畫面」",
+      "android.s4t": "點一下「安裝」並確認",
+      "android.s4d": "圖示出現後以獨立視窗啟動",
+      "sheet.ios": "分享",
+      "sheet.android": "選單",
+      "row.copy": "拷貝連結",
+      "row.favorite": "加入書籤",
+      "row.addHome": "加入主畫面",
+      "row.print": "列印",
+      "row.newtab": "新增分頁",
+      "row.share": "分享…",
+      "row.install": "安裝應用程式",
+      "row.settings": "設定",
+      "tag.target": "目標",
+      "table.title": "兩平台差異速查",
+      "table.item": "項目",
+      "table.source": "入口位置",
+      "table.source.ios": "底部工具列",
+      "table.source.android": "右上角選單",
+      "table.menu": "選單名稱",
+      "table.menu.ios": "加入主畫面",
+      "table.menu.android": "安裝應用程式 / 加入主畫面",
+      "table.browser": "瀏覽器限制",
+      "table.browser.ios": "僅 Safari",
+      "table.browser.android": "Chrome、Edge 等",
+      "table.launch": "啟動方式",
+      "table.launch.ios": "獨立視窗",
+      "table.launch.android": "獨立視窗",
+      "footer": "示意圖僅說明介面位置，實際樣式依系統版本而異。"
+    }
+  };
+
+  var root = document.querySelector('.wrap');
+  var buttons = root.querySelectorAll('[data-lang]');
+
+  function apply(lang) {
+    var strings = dictionary[lang] || dictionary.en;
+    document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+    root.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (strings[key] !== undefined) el.textContent = strings[key];
+    });
+    buttons.forEach(function (btn) {
+      var isActive = btn.getAttribute('data-lang') === lang;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      apply(btn.getAttribute('data-lang'));
+    });
+  });
+})();
+</script>
+</body>
+</html>
